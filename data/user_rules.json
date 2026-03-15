@@ -1,0 +1,13 @@
+{
+  "always_cleanup": [
+    "uber.com",
+    "redditmail.com"
+  ],
+  "always_keep": [
+    "accounts.google.com"
+  ],
+  "protected_domains": [
+    "rice.edu",
+    "github.com"
+  ]
+}
