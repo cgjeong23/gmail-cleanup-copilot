@@ -32,7 +32,7 @@ The system operates in two complementary modes:
 
 <img src="docs/images/system_design.png" width="700">
 
-### Interacrtive Cleanup Dashboard
+### Interactive Cleanup Dashboard
 
 A Streamlit interface that visualizes sender activity and allows users to review cleanup candidates before taking action.
 
