@@ -1,0 +1,44 @@
+Gmail Cleanup Report — March 2026
+
+Total senders analyzed: 72
+Cleanup candidates: 2
+Review candidates: 17
+Keep: 53
+Overrides applied: 6
+Messages in cleanup/review queue: 93
+
+Top 10 ranked candidates:
+- noreply@redditmail.com | score=10 | label=cleanup | messages=17
+  - matched always_cleanup rule
+- uber@uber.com | score=10 | label=cleanup | messages=6
+  - matched always_cleanup rule
+- noreply@booking.com | score=6 | label=review | messages=8
+  - moderate email frequency
+  - unsubscribe header detected repeatedly
+  - noreply-style sender pattern
+- news@info.endclothing.com | score=5 | label=review | messages=8
+  - moderate email frequency
+  - unsubscribe header detected repeatedly
+  - marketing keyword in subject: sale
+- reply@email.rockets.com | score=5 | label=review | messages=5
+  - moderate email frequency
+  - unsubscribe header detected repeatedly
+  - marketing-like sender domain pattern
+- no-reply@spotify.com | score=5 | label=review | messages=2
+  - unsubscribe header detected repeatedly
+  - noreply-style sender pattern
+- no-reply@m.mail.coursera.org | score=5 | label=review | messages=1
+  - unsubscribe header detected
+  - noreply-style sender pattern
+  - marketing-like sender domain pattern
+- hello@news.expressvpn.com | score=5 | label=review | messages=1
+  - unsubscribe header detected
+  - multiple marketing keywords in subject: off, travel
+  - marketing-like sender domain pattern
+- noreply@email.openai.com | score=5 | label=review | messages=1
+  - unsubscribe header detected
+  - noreply-style sender pattern
+  - marketing-like sender domain pattern
+- tickets@live.vividseats.com | score=4 | label=review | messages=9
+  - moderate email frequency
+  - unsubscribe header detected repeatedly

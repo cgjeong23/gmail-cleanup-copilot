@@ -14,7 +14,7 @@ TOKEN_PATH = PROJECT_ROOT / "token.json"
 
 
 DEFAULT_SCOPES: list[str] = [
-    "https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/gmail.modify",
 ]
 
 

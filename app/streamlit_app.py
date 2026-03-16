@@ -1,13 +1,22 @@
 from __future__ import annotations
 
 from pathlib import Path
+import sys
+ROOT_DIR = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT_DIR))
 
 import pandas as pd
 import streamlit as st
-
+from src.gmail.client import get_gmail_service
+from src.actions.filter_actions import (
+    list_message_ids_by_sender,
+    preview_messages_by_sender,
+)
+from src.actions.trash_actions import move_messages_to_trash
+from src.storage.decisions import append_action_log
 
 DATA_PATH = Path("data/outputs/cleanup_candidates.csv")
-
+ACTION_LOG_PATH = Path("data/logs/action_logs.jsonl")
 
 def load_candidates(path: Path) -> pd.DataFrame:
     if not path.exists():
@@ -160,6 +169,141 @@ def render_sender_detail(df: pd.DataFrame) -> None:
     else:
         st.write("No reasons available.")
 
+def render_trash_action_panel(df: pd.DataFrame) -> None:
+    st.subheader("Approved Cleanup Action")
+
+    if df.empty:
+        st.info("No sender available for actions.")
+        return
+
+    sender_list = df["sender_email"].dropna().tolist()
+    selected_sender = st.selectbox(
+        "Select a sender to review for trash action",
+        sender_list,
+        key="trash_sender_select",
+    )
+
+    newer_than_days = st.number_input(
+        "Search window (days)",
+        min_value=1,
+        max_value=365,
+        value=30,
+        step=1,
+    )
+
+    preview_limit = st.slider(
+        "Preview message count",
+        min_value=1,
+        max_value=10,
+        value=5,
+        step=1,
+    )
+
+    if st.button("Preview affected emails", key="preview_trash_action"):
+        try:
+            service = get_gmail_service()
+
+            message_ids = list_message_ids_by_sender(
+                service=service,
+                sender_email=selected_sender,
+                newer_than_days=int(newer_than_days),
+                include_spam_trash=False,
+                max_results=500,
+            )
+
+            previews = preview_messages_by_sender(
+                service=service,
+                sender_email=selected_sender,
+                newer_than_days=int(newer_than_days),
+                include_spam_trash=False,
+                preview_limit=int(preview_limit),
+            )
+
+            st.session_state["trash_selected_sender"] = selected_sender
+            st.session_state["trash_message_ids"] = message_ids
+            st.session_state["trash_previews"] = previews
+            st.session_state["trash_search_window_days"] = int(newer_than_days)
+
+        except Exception as e:
+            st.error(f"Preview failed: {e}")
+
+    selected_sender_state = st.session_state.get("trash_selected_sender")
+    message_ids_state = st.session_state.get("trash_message_ids", [])
+    previews_state = st.session_state.get("trash_previews", [])
+    search_window_days_state = st.session_state.get("trash_search_window_days", 30)
+
+    if selected_sender_state:
+        st.markdown(f"**Selected sender:** {selected_sender_state}")
+        st.write(f"**Matched messages:** {len(message_ids_state)}")
+
+        if previews_state:
+            preview_df = pd.DataFrame(previews_state)
+            preview_cols = [c for c in ["id", "subject", "date"] if c in preview_df.columns]
+
+            st.markdown("**Recent matching messages**")
+            st.dataframe(
+                preview_df[preview_cols],
+                use_container_width=True,
+                hide_index=True,
+            )
+
+        confirm = st.checkbox(
+            f"I confirm I want to move messages from {selected_sender_state} to trash",
+            key="trash_confirm_checkbox",
+        )
+
+        max_allowed = max(1, len(message_ids_state)) if message_ids_state else 1
+        default_value = min(10, max_allowed)
+
+        execute_limit = st.number_input(
+            "Max messages to trash this run",
+            min_value=1,
+            max_value=max_allowed,
+            value=default_value,
+            step=1,
+        )
+
+        if st.button("Move to Trash", key="execute_trash_action"):
+            if not confirm:
+                st.warning("Please confirm before executing the trash action.")
+                return
+
+            if not message_ids_state:
+                st.warning("No messages matched this sender.")
+                return
+
+            try:
+                service = get_gmail_service()
+
+                target_ids = message_ids_state[: int(execute_limit)]
+
+                result = move_messages_to_trash(
+                    service=service,
+                    message_ids=target_ids,
+                )
+
+                append_action_log(
+                    ACTION_LOG_PATH,
+                    {
+                        "action": "trash_sender_messages",
+                        "sender_email": selected_sender_state,
+                        "requested_count": result["requested"],
+                        "trashed_count": result["trashed"],
+                        "failed_count": result["failed"],
+                        "failed_ids": result["failed_ids"],
+                        "search_window_days": int(search_window_days_state),
+                    },
+                )
+
+                st.success(
+                    f"Moved {result['trashed']} / {result['requested']} messages to trash."
+                )
+
+                if result["failed"] > 0:
+                    st.error(f"Failed to trash {result['failed']} messages.")
+
+            except Exception as e:
+                st.error(f"Trash action failed: {e}")
 
 def main() -> None:
     st.set_page_config(
@@ -202,6 +346,9 @@ def main() -> None:
 
     st.divider()
     render_sender_detail(filtered_df)
+
+    st.divider()
+    render_trash_action_panel(filtered_df)
 
 
 if __name__ == "__main__":

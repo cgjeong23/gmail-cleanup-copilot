@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <title>Gmail Cleanup Report — March 2026</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 40px;
+          color: #222;
+          line-height: 1.5;
+          background: #fafafa;
+        }
+        .container {
+          max-width: 980px;
+          margin: 0 auto;
+          background: white;
+          padding: 32px;
+          border-radius: 16px;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        h1 {
+          margin-bottom: 8px;
+        }
+        .subtitle {
+          color: #666;
+          margin-bottom: 24px;
+        }
+        .metrics {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 12px;
+          margin-bottom: 28px;
+        }
+        .metric {
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 16px;
+          background: #fcfcfc;
+          text-align: center;
+        }
+        .metric-value {
+          font-size: 28px;
+          font-weight: bold;
+        }
+        .metric-label {
+          color: #666;
+          font-size: 14px;
+          margin-top: 4px;
+        }
+        .section-title {
+          margin-top: 30px;
+          margin-bottom: 14px;
+        }
+        .summary-box {
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 16px;
+          background: #f8fafc;
+          margin-bottom: 24px;
+        }
+        .candidate {
+          border: 1px solid #e5e7eb;
+          border-radius: 14px;
+          padding: 18px;
+          margin-bottom: 16px;
+          background: #fff;
+        }
+        .candidate-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: start;
+          gap: 16px;
+        }
+        .sender {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        .domain {
+          color: #666;
+          font-size: 14px;
+        }
+        .score-box {
+          text-align: right;
+          min-width: 80px;
+        }
+        .score {
+          font-size: 28px;
+          font-weight: bold;
+        }
+        .label {
+          text-transform: uppercase;
+          color: #555;
+          font-size: 12px;
+          letter-spacing: 0.08em;
+        }
+        .meta {
+          display: flex;
+          gap: 20px;
+          margin-top: 12px;
+          color: #333;
+          font-size: 14px;
+          flex-wrap: wrap;
+        }
+        .subject {
+          margin-top: 10px;
+        }
+        .reasons {
+          margin-top: 12px;
+        }
+        ul {
+          margin-top: 8px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Gmail Cleanup Report — March 2026</h1>
+        <div class="subtitle">Monthly inbox cleanup summary generated from ranked sender activity.</div>
+
+        
+    <div class="metrics">
+      <div class="metric"><div class="metric-value">72</div><div class="metric-label">Total Senders</div></div>
+      <div class="metric"><div class="metric-value">2</div><div class="metric-label">Cleanup</div></div>
+      <div class="metric"><div class="metric-value">17</div><div class="metric-label">Review</div></div>
+      <div class="metric"><div class="metric-value">53</div><div class="metric-label">Keep</div></div>
+      <div class="metric"><div class="metric-value">6</div><div class="metric-label">Overrides</div></div>
+    </div>
+    
+
+        <div class="summary-box">
+          <p><strong>Messages in cleanup/review queue:</strong> 93</p>
+          <p><strong>Top section includes:</strong> highest-ranked cleanup and review candidates for manual review or automated follow-up.</p>
+        </div>
+
+        <h2 class="section-title">Top Ranked Candidates</h2>
+        
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">noreply@redditmail.com</div>
+                  <div class="domain">redditmail.com</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">10</div>
+                  <div class="label">cleanup</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 17</span>
+                <span><strong>Last seen:</strong> Wed, 4 Mar 2026 13:07:16 +0000</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> &quot;ASKE - AI Music Distribution&quot;</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>matched always_cleanup rule</li></ul>
+              </div>
+            </div>
+            
+
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">uber@uber.com</div>
+                  <div class="domain">uber.com</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">10</div>
+                  <div class="label">cleanup</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 6</span>
+                <span><strong>Last seen:</strong> Tue, 10 Mar 2026 23:59:18 +0000</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> 간편한 식사를 즐기신 지도 오래되셨네요</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>matched always_cleanup rule</li></ul>
+              </div>
+            </div>
+            
+
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">noreply@booking.com</div>
+                  <div class="domain">booking.com</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">6</div>
+                  <div class="label">review</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 8</span>
+                <span><strong>Last seen:</strong> Wed, 11 Mar 2026 12:00:00 +0000 (UTC)</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> 시레토코 빌리지 평가하기</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>moderate email frequency</li><li>unsubscribe header detected repeatedly</li><li>noreply-style sender pattern</li></ul>
+              </div>
+            </div>
+            
+
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">news@info.endclothing.com</div>
+                  <div class="domain">info.endclothing.com</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">5</div>
+                  <div class="label">review</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 8</span>
+                <span><strong>Last seen:</strong> Tue, 10 Mar 2026 11:53:13 +0000</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> Mid-Season Sale Sneakers</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>moderate email frequency</li><li>unsubscribe header detected repeatedly</li><li>marketing keyword in subject: sale</li></ul>
+              </div>
+            </div>
+            
+
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">reply@email.rockets.com</div>
+                  <div class="domain">email.rockets.com</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">5</div>
+                  <div class="label">review</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 5</span>
+                <span><strong>Last seen:</strong> Tue, 03 Mar 2026 12:16:04 -0600</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> Rockets vs. Lakers TWICE This Week 🔥</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>moderate email frequency</li><li>unsubscribe header detected repeatedly</li><li>marketing-like sender domain pattern</li></ul>
+              </div>
+            </div>
+            
+
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">no-reply@spotify.com</div>
+                  <div class="domain">spotify.com</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">5</div>
+                  <div class="label">review</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 2</span>
+                <span><strong>Last seen:</strong> Tue, 03 Mar 2026 12:50:59 +0000 (UTC)</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> Score 2 months of Spotify Premium for $6.99 today.</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>unsubscribe header detected repeatedly</li><li>noreply-style sender pattern</li></ul>
+              </div>
+            </div>
+            
+
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">no-reply@m.mail.coursera.org</div>
+                  <div class="domain">m.mail.coursera.org</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">5</div>
+                  <div class="label">review</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 1</span>
+                <span><strong>Last seen:</strong> Mon, 09 Mar 2026 19:23:48 +0000</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> Add GenAI skills to your resume with IBM Professional Certificates</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>unsubscribe header detected</li><li>noreply-style sender pattern</li><li>marketing-like sender domain pattern</li></ul>
+              </div>
+            </div>
+            
+
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">hello@news.expressvpn.com</div>
+                  <div class="domain">news.expressvpn.com</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">5</div>
+                  <div class="label">review</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 1</span>
+                <span><strong>Last seen:</strong> Fri, 27 Feb 2026 20:04:00 +0000 (UTC)</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> Up to 81% off for safe Wi-Fi during travels ✈️</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>unsubscribe header detected</li><li>multiple marketing keywords in subject: off, travel</li><li>marketing-like sender domain pattern</li></ul>
+              </div>
+            </div>
+            
+
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">noreply@email.openai.com</div>
+                  <div class="domain">email.openai.com</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">5</div>
+                  <div class="label">review</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 1</span>
+                <span><strong>Last seen:</strong> Fri, 27 Feb 2026 04:23:46 +0000 (UTC)</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> 이제 Codex 한도가 2배로 커졌습니다</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>unsubscribe header detected</li><li>noreply-style sender pattern</li><li>marketing-like sender domain pattern</li></ul>
+              </div>
+            </div>
+            
+
+            <div class="candidate">
+              <div class="candidate-header">
+                <div>
+                  <div class="sender">tickets@live.vividseats.com</div>
+                  <div class="domain">live.vividseats.com</div>
+                </div>
+                <div class="score-box">
+                  <div class="score">4</div>
+                  <div class="label">review</div>
+                </div>
+              </div>
+
+              <div class="meta">
+                <span><strong>Messages:</strong> 9</span>
+                <span><strong>Last seen:</strong> Wed, 11 Mar 2026 16:17:46 +0000</span>
+              </div>
+
+              <div class="subject"><strong>Sample subject:</strong> Bone Thugs N Harmony in Katy Next Saturday!</div>
+
+              <div class="reasons">
+                <strong>Reasons</strong>
+                <ul><li>moderate email frequency</li><li>unsubscribe header detected repeatedly</li></ul>
+              </div>
+            </div>
+            
+      </div>
+    </body>
+    </html>

@@ -10,6 +10,13 @@ from src.gmail.parse_headers import parse_message_metadata
 from src.analysis.aggregate_senders import aggregate_by_sender
 from src.storage.export_csv import save_sender_summary
 from src.analysis.rank_candidates import run_ranking_pipeline
+from src.gmail.client import get_gmail_service
+from src.actions.filter_actions import (
+    list_message_ids_by_sender,
+    preview_messages_by_sender,
+)
+from src.actions.trash_actions import move_messages_to_trash
+
 
 def main() -> None:
     query = "newer_than:30d -in:chats"
@@ -75,6 +82,29 @@ def main() -> None:
         output_path=Path("data/outputs/cleanup_candidates.csv"),
         user_rules_path=Path("data/user_rules.json"),
     )
+
+    # === Action Layer ===
+    # A) finding message ids based on senders
+
+    sender_email = "noreply@redditmail.com"
+
+    message_ids = list_message_ids_by_sender(
+    service=service,
+    sender_email=sender_email,
+    newer_than_days=30,
+    include_spam_trash=False,
+    max_results=20,
+    )
+
+    print(f"matched messages: {len(message_ids)}")
+
+    # B) Moving messages to Trash
+    result = move_messages_to_trash(
+    service=service,
+    message_ids=message_ids[:1],  
+    )
+    print(result)
+
 
 if __name__ == "__main__":
     main()

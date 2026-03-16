@@ -39,6 +39,7 @@ FILES = [
     "src/storage/export_csv.py",
     "src/storage/decisions.py",
     "src/models/schemas.py",
+    "src/reporting/generate_cleanup_report.py",
     "src/utils/email_utils.py",
     "src/utils/logging_utils.py",
     "docs/architecture.md",
