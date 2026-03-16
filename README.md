@@ -177,7 +177,21 @@ account-security-noreply@accountprotection.microsoft.com accountprotection.micro
 
 ---
 
-## Running the Project
+## Reproducibility
+
+This project integrates with the Gmail API and operates on personal inbox data.
+
+Due to OAuth authentication and private email content,
+full end-to-end reproducibility is not provided.
+
+However, the repository includes:
+
+- the core ranking pipeline
+- report generation logic
+- automation workflow examples
+- architecture documentation
+
+## Running the Project locally
 
 ### Install dependencies
 ```
