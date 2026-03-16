@@ -30,6 +30,8 @@ Gmail Cleanup Copilot introduces a sender-level inbox analysis pipeline that agg
 
 The system operates in two complementary modes:
 
+<img src="docs/images/system_design.png" width="700">
+
 ### Interacrtive Cleanup Dashboard
 
 A Streamlit interface that visualizes sender activity and allows users to review cleanup candidates before taking action.
@@ -65,11 +67,11 @@ The report is automatically generated and delivered via email using an orchestra
 The dashboard visualizes ranked cleanup candidates and provides sender-level insights.
 
 
-### Sender-Level Detail
+### Sender-Level Detail & Follow Clean-up Action
 
 <img src="docs/images/sender_detail.png" width="700">
 
-Each sender includes an explainable breakdown of why it was flagged as a cleanup candidate.
+Each sender includes an explainable breakdown of why it was flagged as a cleanup candidate. Subsequently, detected emails from send can be trashed by user-driven decision.
 
 
 ### Monthly Cleanup Report
@@ -85,7 +87,7 @@ A generated HTML report summarizing inbox cleanup recommendations.
 
 Gmail Cleanup Copilot is designed as a modular pipeline separating data ingestion, analysis, user interaction, and workflow orchestration.
 
-diagram
+<img src="docs/images/system_design.png" width="700">
 
 The architecture seperates the analysis pipeline from the automation layer, allowing the system to support both interactive cleanup workflows and scheduled reporting.
 
