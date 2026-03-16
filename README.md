@@ -60,15 +60,23 @@ The report is automatically generated and delivered via email using an orchestra
 
 ### Interactive Dashboard
 
+<img src="docs/images/interactive_dashboard.png" width="700">
+
 The dashboard visualizes ranked cleanup candidates and provides sender-level insights.
 
 
 ### Sender-Level Detail
 
+<img src="docs/images/sender_detail.png" width="700">
+
 Each sender includes an explainable breakdown of why it was flagged as a cleanup candidate.
 
 
 ### Monthly Cleanup Report
+
+<img src="docs/images/monthly_report_1.png" width="700">
+
+<img src="docs/images/monthly_report_2.png" width="700">
 
 A generated HTML report summarizing inbox cleanup recommendations.
 
@@ -135,6 +143,8 @@ The monthly workflow:
 1. trigggers the cleanup pipeline via th API
 2. generates a cleanup report
 3. sends the report via email
+
+<img src="docs/images/workflow.png" width="700">
 
 This architecture decouples analysis logic from workflow scheduing.
 
