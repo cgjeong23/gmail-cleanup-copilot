@@ -10,4 +10,5 @@ data/processed/
 data/outputs/
 
 logs/
+n8n/
 .DS_Store

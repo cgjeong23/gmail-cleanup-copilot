@@ -1,0 +1,146 @@
+{
+  "name": "gmail-cleanup-agent",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://python-api:8000/run-cleanup",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        224,
+        0
+      ],
+      "id": "40eab08d-d93d-4f8b-88fa-40da7530012f",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3f810003-48d3-44d5-bb52-369f58d255fa",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "mail",
+        "fromEmail": "iam_cjeong@naver.com",
+        "fromName": "Gmail Cleanup Agent",
+        "toEmail": "nalago070@gmail.com",
+        "subject": "=Gmail Cleanup Report — {{$now.format('MMMM YYYY')}}",
+        "contentType": "text/html",
+        "contentValue": "=<p>Your monthly Gmail cleanup report is ready.</p>\n\n<p>This report includes:</p>\n<ul>\n  <li>cleanup_report.html — summary dashboard</li>\n  <li>cleanup_candidates.csv — detected cleanup candidates</li>\n</ul>\n\n{{$json.html}}\n\n<p>Generated automatically by Gmail Cleanup Copilot.</p>",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.sendGrid",
+      "typeVersion": 1,
+      "position": [
+        896,
+        0
+      ],
+      "id": "2cbb21c5-b31e-431b-89de-62b7d2d83f6b",
+      "name": "Send an email",
+      "credentials": {
+        "sendGridApi": {
+          "id": "GOb0iBiQZVbxMnrJ",
+          "name": "SendGrid account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/workspace/data/reports/cleanup_report.html",
+        "options": {
+          "fileName": "cleanup_report"
+        }
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "6a7e1d54-c829-49d3-a9ca-52d74f27e4a1",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first();\n\nconst buffer = await this.helpers.getBinaryDataBuffer(0, 'data');\nconst html = buffer.toString('utf8');\n\nreturn [\n  {\n    json: {\n      html,\n    },\n    binary: item.binary,\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        0
+      ],
+      "id": "fba627ab-c000-4b43-b7ff-d7350439b687",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send an email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "fe3f9b5d-7cc0-4ec9-ad01-7ab8e5b1fbaa",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "af40c43dcda199a8422cc164a939808943b1e6422d41d40136883de426645820"
+  },
+  "id": "EqhMmPH1ZDT9FhZa",
+  "tags": []
+}

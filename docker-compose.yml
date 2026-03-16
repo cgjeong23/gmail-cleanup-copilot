@@ -1,0 +1,23 @@
+services:
+  n8n:
+    image: n8nio/n8n
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./n8n:/home/node/.n8n
+      - ./:/workspace
+    environment:
+      - GENERIC_TIMEZONE=Asia/Seoul
+      - N8N_RESTRICT_FILE_ACCESS_TO=/workspace;/home/node/.n8n-files
+    depends_on:
+      - python-api
+
+  python-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace

@@ -6,9 +6,11 @@ from pathlib import Path
 
 import pandas as pd
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 now = datetime.now()
 report_month = now.strftime("%B %Y")
+report_month = (now - relativedelta(months=1)).strftime("%B %Y")
 
 @dataclass
 class ReportSummary:
