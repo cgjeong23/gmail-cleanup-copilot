@@ -142,13 +142,13 @@ This architecture decouples analysis logic from workflow scheduing.
 
 ## Tech Stack
 
-Python
-Gmail API
-Pandas
-Streamlit
-Docker
-n8n (workflow orchestration)
-SendGRid (email delivery)
+* Python
+* Gmail API
+* Pandas
+* Streamlit
+* Docker
+* n8n (workflow orchestration)
+* SendGrid (email delivery)
 
 ---
 
