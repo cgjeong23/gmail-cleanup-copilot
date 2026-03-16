@@ -163,6 +163,17 @@ This architecture decouples analysis logic from workflow scheduing.
 ---
 
 ## Example Output
+```
+=== Sender-level summary ===
+                                            sender_email                   sender_domain  message_count                             last_seen  unsubscribe_count                                 
+                                   sample_subject
+                                  noreply@redditmail.com                  redditmail.com             13        Wed, 4 Mar 2026 13:07:16 +0000                  0                                 
+                   "ASKE - AI Music Distribution"
+account-security-noreply@accountprotection.microsoft.com accountprotection.microsoft.com             11       Wed, 11 Mar 2026 01:54:32 -0700                  0                                 
+       Microsoft account unusual sign-in activity
+                             tickets@live.vividseats.com             live.vividseats.com              9       Wed, 11 Mar 2026 16:17:46 +0000                  9                                 
+      Bone Thugs N Harmony in Katy Next Saturday!
+```
 
 ---
 
