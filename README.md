@@ -1,6 +1,7 @@
 # Gmail Cleanup Copilot
 
-Human-in-the-loop Gmail cleanup assistant with automated monthly reporting.
+AI-assisted Gmail cleanup system that analyzes sender-level activity,
+recommends low-value email sources, and automates monthly inbox reports.
 
 Modern inboxes accumulate large volumes of automated and promotional emails. While email clients provide filters and unsubscribe links, they rarely offer a structured way to understand which senders contribute most to inbox clutter.
 
@@ -9,6 +10,12 @@ As a result, inbox cleanup often becomes a repetitive and manual task.
 Gmail Cleanup Copilot analyzes Gmail activity at the sender level, identifies low-value senders, and produces ranked cleanup recommendations with explanations.
 
 The system combines data analysis, explainable ranking, and workflow automation to turn inbox cleanup from an ad-hoc task into a structured process.
+
+---
+## Architecture Overview
+
+The system combines Gmail data ingestion, sender-level analysis,
+human-in-the-loop review, and automated reporting.
 
 ---
 ## Problem
@@ -83,7 +90,8 @@ A generated HTML report summarizing inbox cleanup recommendations.
 
 ## System Architecture
 
-Gmail Cleanup Copilot is designed as a modular pipeline separating data ingestion, analysis, user interaction, and workflow orchestration.
+The system consists of four layers: data ingestion,
+analysis pipeline, user interaction, and workflow orchestration.
 
 <img src="docs/images/system_design.png" width="700">
 
@@ -126,6 +134,20 @@ Cleanup actions are not executed automatically.
 
 Users review ranked candidates throught the dashboard before applying cleanup actions, ensuring safe inbox management.
 
+### Signal Engineering
+
+The ranking system focuses on lightweight heuristics
+rather than heavy ML models.
+
+Signals include:
+
+* message frequency
+* unsubscribe headers
+* marketing keywords
+* no-reply patterns
+
+This design keeps the system interpretable and fast
+while still surfacing meaningful cleanup candidates.
 
 ### API-Based Pipeline
 
