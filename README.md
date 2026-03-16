@@ -62,19 +62,16 @@ The report is automatically generated and delivered via email using an orchestra
 
 The dashboard visualizes ranked cleanup candidates and provides sender-level insights.
 
----
 
 ### Sender-Level Detail
 
 Each sender includes an explainable breakdown of why it was flagged as a cleanup candidate.
 
----
 
 ### Monthly Cleanup Report
 
 A generated HTML report summarizing inbox cleanup recommendations.
 
----
 
 ## System Architecture
 
@@ -101,7 +98,6 @@ This approach allows the system to detect patterns such as:
 
 Sender-level analysis provides a clearer signal for cleanup decisions.
 
----
 
 ### Explainable Ranking
 
@@ -115,7 +111,6 @@ Cleanup candidates are ranked using a rule-based scoring system that considers:
 
 Each recommendation includes **explainable reasons** to support user decision-making.
 
----
 
 ### Human-in-the-Loop Workflow
 
@@ -123,7 +118,6 @@ Cleanup actions are not executed automatically.
 
 Users review ranked candidates throught the dashboard before applying cleanup actions, ensuring safe inbox management.
 
----
 
 ### API-Based Pipeline
 
@@ -131,7 +125,6 @@ The cleanup pipeline is exposed through a lightweight API service.
 
 This allows external systems to trigger analysis workflows programmatically, enabling integration with automation tools.
 
----
 
 ### Workflow Orchestration
 
@@ -166,24 +159,24 @@ SendGRid (email delivery)
 ## Running the Project
 
 ### Install dependencies
-'''
+```
 pip install -r requirements.txt
-'''
+```
 
 ### Run analysis pipeline
-'''
+```
 python main.py
-'''
+```
 
 ### Launch Streamlit dashboard
-'''
+```
 streamlit run app/streamlit_app.py
-'''
+```
 
 ### Run with Docker
-'''
+```
 docker compose up
-'''
+```
 
 ---
 
